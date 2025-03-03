@@ -13,6 +13,10 @@ export default [
     ignores: ["node_modules", "dist"],
     rules: {
       "no-unused-vars": "error",
+      "prefer-const":"error",
+      "no-undef":"error",
+      "no-unused-expressions":"error",
+      "no-console":"warn"
     },
   },
 ];
