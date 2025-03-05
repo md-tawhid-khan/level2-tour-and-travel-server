@@ -9,11 +9,17 @@ const userSchema= new Schema<IUser>({
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values)
         },
         message:`{VALUE} is not valid email`,
-    }   
+
+    }, 
+    immutable:true  
     },
     photo:{type:String},
-    role:{type:String, enum:{values:['admin','user'],message:`{VALUE} is not valid`}, required:[true,"please provide your role "]},
-    userStatus:{type:String, enum:{values:['active','inactive']}, required:[true,"please provide your userStatus"]}
+    role:{type:String, default:"user", enum:{values:['admin','user'],message:`{VALUE} is not valid`}, required:[true,"please provide your role "]},
+    userStatus:{type:String, default:"active", enum:{values:['active','inactive']}, required:[true,"please provide your userStatus"]}
+})
+
+userSchema.pre('find',function(this,next){
+
 })
 
 const User=model<IUser>('user',userSchema)
