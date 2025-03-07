@@ -19,7 +19,15 @@ const userSchema= new Schema<IUser>({
 })
 
 userSchema.pre('find',function(this,next){
+  this.find({userStatus:{$eq:'active'}})
+  next()
+})
 
+userSchema.post('find',function(docs,next){
+   docs.forEach((doc:IUser)=>{
+    doc.name=doc.name.toUpperCase()
+   })
+    next()
 })
 
 const User=model<IUser>('user',userSchema)
