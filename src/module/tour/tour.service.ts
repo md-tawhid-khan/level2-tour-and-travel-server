@@ -26,8 +26,9 @@ const deleteTour=async(id:string)=>{
 }
 
 const getNextSchedule=async(id:string)=>{
-    const tour=await Tour.findById(id)
-   const nextSchedule= tour?.getNextNearestDateAndEndDate()
+    // const tour=await Tour.findById(id)
+//    const nextSchedule= tour?.getNextNearestDateAndEndDate()
+     const nextSchedule= await Tour.getNextNearestDateAndEndDate()
    return {
     tour,
     nextSchedule
